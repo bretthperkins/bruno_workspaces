@@ -1,0 +1,14 @@
+name: local_dev
+variables:
+  - name: base_endpoint
+    value: http://127.0.0.1:3001
+  - secret: true
+    name: client_secret
+  - name: client_id
+    value: api-service
+  - name: grant_type
+    value: client_credentials
+  - name: auth_endpoint
+    value: http://localhost:8080/realms/dev/protocol/openid-connect/token
+  - secret: true
+    name: token

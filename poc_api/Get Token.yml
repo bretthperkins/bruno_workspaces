@@ -1,0 +1,49 @@
+info:
+  name: Get Token
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{auth_endpoint}}"
+  headers:
+    - name: Content-Type
+      value: application/x-www-form-urlencoded
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: grant_type
+        type: text
+        value: "{{grant_type}}"
+      - name: client_id
+        type: text
+        value: "{{client_id}}"
+      - name: client_secret
+        type: text
+        value: "{{client_secret}}"
+      - name: audience
+        type: text
+        value: "{{audience}}"
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const jsonData = res.getBody(); // Parse the response body
+
+        if (res.getStatus() === 200) {
+          // Use bru.setEnvVar to save to an active environment (ensure an environment is selected)
+          bru.setEnvVar("token", jsonData.access_token); 
+          
+          // OR use bru.setVar to save as a runtime/collection variable
+          bru.setVar("token", jsonData.access_token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
