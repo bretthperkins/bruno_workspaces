@@ -12,3 +12,5 @@ variables:
     value: http://localhost:8080/realms/dev/protocol/openid-connect/token
   - secret: true
     name: token
+  - name: audience
+    value: api-service

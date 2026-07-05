@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{base_endpoint}}/company/Company%20D%20LLC"
+  url: "{{base_endpoint}}/company/Company%20E%20LLC"
   auth:
     type: bearer
     token: "{{token}}"
